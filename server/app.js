@@ -36,4 +36,30 @@ app.get('/products', function(req, res){
     );
 })
 
+app.get('/productserr', function(req, res){
+  setTimeout(
+    () => {
+      res.status(500).send({
+        msg: "Error message from the server"
+      });
+    }, 2000);
+})
+
+app.get('/productsdelay', function(req, res){
+  setTimeout(
+    () => {
+      Product.find().lean().exec(
+        (err, prods) => {
+            if(err)
+              res.status(500).send(err);
+            else 
+              res.status(200).send(prods);
+        }  
+      );
+    }, 2000);
+
+
+  
+})
+
 app.listen(3000);
