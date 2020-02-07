@@ -79,7 +79,7 @@ app.get('/products/name/:id', function(req, res){
         else if(!prod)
           res.status(404).send({msg: "Product not found"});
         else 
-          res.status(200).send(prod);
+          res.status(200).send(prod.name);
     }  
   );
 })
