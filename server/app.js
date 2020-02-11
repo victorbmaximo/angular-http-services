@@ -84,4 +84,22 @@ app.get('/products/name/:id', function(req, res){
   );
 })
 
+app.post('/products', function(req, res) {
+
+  newProduct = new Product({
+    name: req.body.name,
+    price: req.body.price,
+    department: req.body.department
+  });
+
+  newProduct.save((err, prod) => {
+    if(err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(prod)
+    }
+  });
+
+});
+
 app.listen(3000);
